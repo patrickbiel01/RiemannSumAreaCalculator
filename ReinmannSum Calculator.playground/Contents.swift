@@ -21,13 +21,11 @@ func estimateReimann(_ f: (Double) -> Double, between low: Double, and high: Dou
     
     for i in 0..<LIMIT {
         var y = 0.0
-        let x1: Double = Double(low) + Double(i)*RECT_LEN
-        if left {
-            y = f(x1)
-        }else {
-            let x2 = x1 + RECT_LEN
-            y = f(x2)
+        var x: Double = Double(low) + Double(i)*RECT_LEN
+        if !left {
+            x += RECT_LEN
         }
+        let y = f(x)
         let rectArea = y*RECT_LEN
         area += rectArea
     }
